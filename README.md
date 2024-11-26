@@ -2,7 +2,7 @@
 
 > This documentation is a minimal working example of a static documentation website to be build with Mkdocs and deployed on GitHub / GitLab page or on private server.
 
-The static website demo is available at : [https://kernythree.github.io/minimal-working-example-mkdocs/]()
+The static website demo is available at : [https://kernythree.github.io/minimal-working-example-mkdocs](https://kernythree.github.io/minimal-working-example-mkdocs)
 
 
 ## Overview
