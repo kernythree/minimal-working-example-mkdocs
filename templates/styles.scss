@@ -1,0 +1,82 @@
+$primary-color: #004491;  // Accent color for headings and lines
+$font-family: "Times New Roman", Times, serif;  // Classic scientific font
+
+@media print {
+  
+  /* General document styling */
+  body {  
+    max-width: 18cm;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: $font-family;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  /* Headings with stylish underlines */
+  .md-typeset h1, article h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    border-bottom: 0px solid $primary-color;
+    padding-bottom: 5px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .md-typeset h2, article h2 {
+    font-size: 16pt;
+    font-weight: bold;
+    border-bottom: 0px solid $primary-color;
+    padding-bottom: 4px;
+    margin-top: 0.8em;
+    margin-bottom: 0.4em;
+  }
+
+  .md-typeset h3, article h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    border-bottom: 0px solid $primary-color;
+    padding-bottom: 3px;
+    margin-top: 0.6em;
+    margin-bottom: 0.3em;
+  }
+
+  /* Paragraph styling for readability */
+  p {
+    text-align: justify;
+    margin-bottom: 1em;
+  }
+
+  /* Blockquote styling */
+  blockquote {
+    border-left: 3px solid $primary-color;
+    padding-left: 10px;
+    font-style: italic;
+    color: #555;
+    margin: 1em 0;
+  }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+  }
+
+  th, td {
+    padding: 6px;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f3f3f3;
+    font-weight: bold;
+  }
+
+  /* List styling */
+  ul, ol {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+  }
+}

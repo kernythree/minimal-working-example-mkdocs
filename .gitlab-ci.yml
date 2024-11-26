@@ -1,0 +1,30 @@
+image: python:3.9
+
+cache:
+  paths:
+    - .cache/pip/
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - pip install mkdocs mkdocs-material
+  - pip install mkdocs-with-pdf
+
+build:
+  stage: build
+  script:
+    - mkdocs build
+  artifacts:
+    paths:
+      - public
+
+pages:
+  stage: deploy
+  script:
+    - mv site public
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 week

@@ -1,0 +1,25 @@
+site_name: My Documentation Site
+nav:
+  - Home: ./index.md 
+  - Overview: ./overview.md
+  - Software ressources: ./ressources.md
+  - Example page: ./example-page.md
+markdown_extensions:
+  - attr_list
+  - pymdownx.arithmatex:
+      generic: true
+plugins:
+  - with-pdf:
+      render_js: true  # add this
+      headless_chrome_path: C:/Users/mjulien/AppData/Local/Chromium/Application/chrome.exe
+      output_path: ./document.pdf
+      enabled_if_env: ENABLE_PDF_EXPORT
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+theme:
+  name: material
+  logo: ./assets/logo_banner.png
+  palette:
+    primary: black
+    accent: indigo
