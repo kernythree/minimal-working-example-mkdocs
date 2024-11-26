@@ -2,10 +2,8 @@
 
 > This documentation is a minimal working example of a static documentation website to be build with Mkdocs and deployed on GitHub / GitLab page or on private server.
 
-The static website demo is available at : 
+The static website demo is available at : [https://kernythree.github.io/minimal-working-example-mkdocs/]()
 
-- [https://sb2-team.gitlab-pages.ifremer.fr/minimal-working-example-mkdocs/]() (if hosted on the Ifremer's GitLab)
-- [link]() (If hosted on the Ifremer/CNRS GitHub organization)
 
 ## Overview
 
