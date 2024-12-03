@@ -38,47 +38,7 @@ Best theme for scientific documentation are `material`,
 
 To change the way pages are shown in the site web, modify the `nav` section of the configuration file `mkdocs.yml` (see [Mkdocs documentation](https://www.mkdocs.org/user-guide/configuration/#documentation-layout))
 
-## Rendering LaTex equations
-
-To render LaTex equation embeded in your markdown document with `$ ... $` (inline equation) or with `$$ ... $$` (equation blocks) follow instruction on the [Mkdocs documentation](https://squidfunk.github.io/mkdocs-material/reference/math/#mathjax-mkdocsyml)  
-
-Step 1 : Add this to the .yml configuration file
-
-```
-markdown_extensions:
-  - pymdownx.arithmatex:
-      generic: true
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-```
-
-Step 2 : And Create a new file `mathjax.js` in folder `docs/javascripts/` with the following content
-
-```
-window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      ignoreHtmlClass: ".*|",
-      processHtmlClass: "arithmatex"
-    }
-  };
-  
-  document$.subscribe(() => { 
-    MathJax.startup.output.clearCache()
-    MathJax.typesetClear()
-    MathJax.texReset()
-    MathJax.typesetPromise()
-  })
-```
-
-
-## Live HTML pages
+## Live rendering the site locally (for testing)
 
 ```
 python -m mkdocs serve
@@ -105,7 +65,7 @@ plugins: []
 
 ## Deploying site on GitLab page
 
-Create a `.gitlab-ci.yml` file in the root of your repository to define the GitLab CI/CD pipeline for building and deploying GitLab Pages:
+Create a `.gitlab-ci.yml` file in the root of your repository to define the GitLab CI/CD pipeline for building and deploying the page:
 
 ```
 image: python:3.9
@@ -159,7 +119,37 @@ https://<username>.gitlab-pages.ifremer.fr/<projectname>
 
 ## Deploying site on GitHub page
 
+Create the file `deploy.yml` file a folder named `.github/workflows/` at the root of your repository to define the CI/CD pipeline for building and deploying the pages
 
+```
+name: Deploy MkDocs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment when changes are pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install mkdocs mkdocs-material
+          pip install mkdocs-with-pdf
+
+      - name: Build and Deploy
+        run: |
+          mkdocs gh-deploy --force
+```
 
 
 
@@ -225,6 +215,48 @@ Restart Nginx to apply the changes
 ```
 sudo systemctl restart nginx
 ```
+
+
+## Rendering LaTex equations
+
+To render LaTex equation embeded in your markdown document with `$ ... $` (inline equation) or with `$$ ... $$` (equation blocks) follow instruction on the [Mkdocs documentation](https://squidfunk.github.io/mkdocs-material/reference/math/#mathjax-mkdocsyml)  
+
+Step 1 : Add this to the .yml configuration file
+
+```
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+```
+
+Step 2 : And Create a new file `mathjax.js` in folder `docs/javascripts/` with the following content
+
+```
+window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: ".*|",
+      processHtmlClass: "arithmatex"
+    }
+  };
+  
+  document$.subscribe(() => { 
+    MathJax.startup.output.clearCache()
+    MathJax.typesetClear()
+    MathJax.texReset()
+    MathJax.typesetPromise()
+  })
+```
+
+
 
 ## Export to PDF
 
